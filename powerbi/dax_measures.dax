@@ -1,0 +1,193 @@
+// ============================================================
+// CFO360 — DAX Measures
+// Paste into a dedicated "_Measures" table in Power BI (Model view).
+// Assumes tables: FactSales, FactExpenses, FactBudget, FactWorkingCapital,
+// DimDate (marked as Date Table, contiguous calendar), DimRegion,
+// DimBusinessUnit, DimProduct, DimCustomer.
+// ============================================================
+
+// ---------- 1. REVENUE ----------
+
+Total Revenue =
+SUM ( FactSales[revenue] )
+
+Revenue (Prior Month) =
+CALCULATE ( [Total Revenue], DATEADD ( DimDate[date], -1, MONTH ) )
+
+Revenue Growth % =
+DIVIDE ( [Total Revenue] - [Revenue (Prior Month)], [Revenue (Prior Month)] )
+
+Revenue YoY % =
+VAR PriorYear = CALCULATE ( [Total Revenue], SAMEPERIODLASTYEAR ( DimDate[date] ) )
+RETURN DIVIDE ( [Total Revenue] - PriorYear, PriorYear )
+
+Revenue by Region =
+[Total Revenue]  -- place on a matrix/bar chart with DimRegion[region] on rows
+
+Revenue by Product =
+[Total Revenue]  -- place on a matrix/bar chart with DimProduct[product] on rows
+
+Revenue (Trailing 3M) =
+CALCULATE (
+    [Total Revenue],
+    DATESINPERIOD ( DimDate[date], MAX ( DimDate[date] ), -3, MONTH )
+)
+
+// ---------- 2. PROFITABILITY ----------
+
+Total COGS =
+CALCULATE ( SUM ( FactExpenses[amount] ), FactExpenses[expense_category] = "COGS" )
+
+Total OpEx =
+CALCULATE ( SUM ( FactExpenses[amount] ), FactExpenses[expense_category] <> "COGS" )
+
+Gross Profit =
+[Total Revenue] - [Total COGS]
+
+Gross Margin % =
+DIVIDE ( [Gross Profit], [Total Revenue] )
+
+EBITDA =
+[Gross Profit] - [Total OpEx]
+
+EBITDA Margin % =
+DIVIDE ( [EBITDA], [Total Revenue] )
+
+EBITDA (Prior Month) =
+CALCULATE ( [EBITDA], DATEADD ( DimDate[date], -1, MONTH ) )
+
+EBITDA Margin Change (pts) =
+VAR CurrMargin = [EBITDA Margin %]
+VAR PriorMargin =
+    CALCULATE ( [EBITDA Margin %], DATEADD ( DimDate[date], -1, MONTH ) )
+RETURN ( CurrMargin - PriorMargin ) * 100
+
+// ---------- 3. BUDGET / VARIANCE ----------
+
+Budget Revenue =
+SUM ( FactBudget[budget_revenue] )
+
+Budget Expense =
+SUM ( FactBudget[budget_expense] )
+
+Revenue Variance =
+[Total Revenue] - [Budget Revenue]
+
+Revenue Variance % =
+DIVIDE ( [Revenue Variance], [Budget Revenue] )
+
+Cost Variance =
+( [Total COGS] + [Total OpEx] ) - [Budget Expense]
+
+Cost Variance % =
+DIVIDE ( [Cost Variance], [Budget Expense] )
+
+Budget Status =
+VAR V = [Revenue Variance %]
+RETURN
+    SWITCH (
+        TRUE (),
+        ISBLANK ( V ), "No budget",
+        V < -0.10, "Critical miss",
+        V < -0.03, "Below plan",
+        V < 0.03, "On plan",
+        "Above plan"
+    )
+
+// ---------- 4. COST ----------
+
+Total Expenses =
+[Total COGS] + [Total OpEx]
+
+Expense (Prior Month) =
+CALCULATE ( [Total Expenses], DATEADD ( DimDate[date], -1, MONTH ) )
+
+Expense Growth % =
+DIVIDE ( [Total Expenses] - [Expense (Prior Month)], [Expense (Prior Month)] )
+
+Cost by Category =
+SUM ( FactExpenses[amount] )  -- place on a chart with expense_category on rows
+
+Cost % of Revenue =
+DIVIDE ( [Total Expenses], [Total Revenue] )
+
+// ---------- 5. WORKING CAPITAL ----------
+// Approximation: monthly revenue used as the daily-sales proxy, matching
+// the calculation used in python/financial_analysis.py for consistency.
+
+Accounts Receivable =
+SUM ( FactWorkingCapital[accounts_receivable] )
+
+Accounts Payable =
+SUM ( FactWorkingCapital[accounts_payable] )
+
+Inventory =
+SUM ( FactWorkingCapital[inventory] )
+
+DSO (days) =
+DIVIDE ( [Accounts Receivable], [Total Revenue] ) * 30
+
+DPO (days) =
+DIVIDE ( [Accounts Payable], [Total Revenue] * 0.55 ) * 30
+
+DIO (days) =
+DIVIDE ( [Inventory], [Total Revenue] * 0.5 ) * 30
+
+Cash Conversion Cycle =
+[DSO (days)] + [DIO (days)] - [DPO (days)]
+
+DSO (Prior Month) =
+CALCULATE ( [DSO (days)], DATEADD ( DimDate[date], -1, MONTH ) )
+
+DSO Change (days) =
+[DSO (days)] - [DSO (Prior Month)]
+
+// ---------- 6. ROOT-CAUSE / DRILLDOWN HELPERS ----------
+// These power the "why" tooltips and drillthrough page — mirrors the
+// logic in python/financial_analysis.py::generate_insights()
+
+Avg Discount % =
+AVERAGE ( FactSales[discount] )
+
+Avg Discount (Prior 3M) =
+CALCULATE (
+    [Avg Discount %],
+    DATESINPERIOD ( DimDate[date], DATEADD ( MAX ( DimDate[date] ), -3, MONTH ), -3, MONTH )
+)
+
+Discount Change (pts) =
+( [Avg Discount %] - [Avg Discount (Prior 3M)] ) * 100
+
+Worst Region (Revenue Variance) =
+VAR RegionTable =
+    ADDCOLUMNS (
+        VALUES ( DimRegion[region] ),
+        "@var", [Revenue Variance %]
+    )
+RETURN
+    CALCULATE (
+        SELECTEDVALUE ( DimRegion[region] ),
+        TOPN ( 1, RegionTable, [@var], ASC )
+    )
+
+Revenue Foregone Est. (Cr) =
+// Rough estimate: current-period revenue restated at the prior discount rate, minus actual
+VAR CurrentDiscount = [Avg Discount %]
+VAR PriorDiscount = [Avg Discount (Prior 3M)]
+VAR GrossRevenue = DIVIDE ( [Total Revenue], 1 - CurrentDiscount )
+RETURN
+    DIVIDE ( GrossRevenue * ( CurrentDiscount - PriorDiscount ), 10000000 )
+
+// ---------- 7. FORMATTING HELPERS ----------
+
+Revenue (Cr) =
+DIVIDE ( [Total Revenue], 10000000 )
+
+EBITDA (Cr) =
+DIVIDE ( [EBITDA], 10000000 )
+
+KPI Card Label — Revenue =
+"₹" & FORMAT ( [Revenue (Cr)], "#,##0.0" ) & " Cr"
+
+KPI Card Label — Variance =
+FORMAT ( [Revenue Variance %], "+0.0%;-0.0%" )

@@ -1,0 +1,121 @@
+customer_id,customer_name,industry,region
+CUST0001,Client 1,BFSI,East
+CUST0002,Client 2,Telecom,South
+CUST0003,Client 3,Manufacturing,East
+CUST0004,Client 4,Healthcare,West
+CUST0005,Client 5,Healthcare,East
+CUST0006,Client 6,Public Sector,East
+CUST0007,Client 7,BFSI,East
+CUST0008,Client 8,Telecom,South
+CUST0009,Client 9,Retail,North
+CUST0010,Client 10,BFSI,South
+CUST0011,Client 11,Manufacturing,North
+CUST0012,Client 12,Public Sector,South
+CUST0013,Client 13,Telecom,West
+CUST0014,Client 14,Telecom,North
+CUST0015,Client 15,Telecom,North
+CUST0016,Client 16,Telecom,North
+CUST0017,Client 17,Manufacturing,North
+CUST0018,Client 18,BFSI,East
+CUST0019,Client 19,Public Sector,East
+CUST0020,Client 20,Healthcare,West
+CUST0021,Client 21,Manufacturing,East
+CUST0022,Client 22,Healthcare,South
+CUST0023,Client 23,Retail,West
+CUST0024,Client 24,Public Sector,North
+CUST0025,Client 25,Telecom,North
+CUST0026,Client 26,Manufacturing,North
+CUST0027,Client 27,Healthcare,East
+CUST0028,Client 28,Telecom,South
+CUST0029,Client 29,Manufacturing,North
+CUST0030,Client 30,Healthcare,South
+CUST0031,Client 31,Healthcare,North
+CUST0032,Client 32,Retail,East
+CUST0033,Client 33,BFSI,South
+CUST0034,Client 34,Manufacturing,South
+CUST0035,Client 35,Public Sector,South
+CUST0036,Client 36,BFSI,East
+CUST0037,Client 37,Public Sector,South
+CUST0038,Client 38,Telecom,North
+CUST0039,Client 39,Retail,North
+CUST0040,Client 40,Manufacturing,West
+CUST0041,Client 41,BFSI,West
+CUST0042,Client 42,Telecom,East
+CUST0043,Client 43,Telecom,North
+CUST0044,Client 44,Healthcare,West
+CUST0045,Client 45,BFSI,West
+CUST0046,Client 46,Public Sector,East
+CUST0047,Client 47,Healthcare,South
+CUST0048,Client 48,Public Sector,North
+CUST0049,Client 49,Telecom,North
+CUST0050,Client 50,Telecom,West
+CUST0051,Client 51,Telecom,South
+CUST0052,Client 52,Retail,North
+CUST0053,Client 53,Healthcare,South
+CUST0054,Client 54,Healthcare,East
+CUST0055,Client 55,Healthcare,North
+CUST0056,Client 56,BFSI,West
+CUST0057,Client 57,Manufacturing,West
+CUST0058,Client 58,BFSI,East
+CUST0059,Client 59,Telecom,South
+CUST0060,Client 60,Telecom,East
+CUST0061,Client 61,Public Sector,East
+CUST0062,Client 62,Telecom,East
+CUST0063,Client 63,Healthcare,North
+CUST0064,Client 64,Public Sector,South
+CUST0065,Client 65,Healthcare,North
+CUST0066,Client 66,Retail,South
+CUST0067,Client 67,Public Sector,South
+CUST0068,Client 68,Healthcare,North
+CUST0069,Client 69,BFSI,North
+CUST0070,Client 70,Healthcare,East
+CUST0071,Client 71,Telecom,North
+CUST0072,Client 72,Retail,West
+CUST0073,Client 73,Healthcare,East
+CUST0074,Client 74,BFSI,South
+CUST0075,Client 75,Telecom,East
+CUST0076,Client 76,Healthcare,North
+CUST0077,Client 77,Retail,West
+CUST0078,Client 78,Retail,South
+CUST0079,Client 79,Manufacturing,West
+CUST0080,Client 80,Telecom,North
+CUST0081,Client 81,Public Sector,South
+CUST0082,Client 82,Healthcare,South
+CUST0083,Client 83,BFSI,West
+CUST0084,Client 84,Telecom,East
+CUST0085,Client 85,Manufacturing,South
+CUST0086,Client 86,Telecom,North
+CUST0087,Client 87,BFSI,South
+CUST0088,Client 88,Retail,South
+CUST0089,Client 89,Telecom,South
+CUST0090,Client 90,Telecom,North
+CUST0091,Client 91,Healthcare,West
+CUST0092,Client 92,Telecom,West
+CUST0093,Client 93,Public Sector,North
+CUST0094,Client 94,Healthcare,East
+CUST0095,Client 95,Public Sector,North
+CUST0096,Client 96,Retail,East
+CUST0097,Client 97,Retail,North
+CUST0098,Client 98,Telecom,East
+CUST0099,Client 99,Manufacturing,East
+CUST0100,Client 100,BFSI,West
+CUST0101,Client 101,Telecom,North
+CUST0102,Client 102,Retail,West
+CUST0103,Client 103,Telecom,North
+CUST0104,Client 104,BFSI,North
+CUST0105,Client 105,Telecom,East
+CUST0106,Client 106,Telecom,South
+CUST0107,Client 107,Telecom,West
+CUST0108,Client 108,Manufacturing,West
+CUST0109,Client 109,Healthcare,South
+CUST0110,Client 110,Telecom,West
+CUST0111,Client 111,Retail,North
+CUST0112,Client 112,Telecom,South
+CUST0113,Client 113,Manufacturing,North
+CUST0114,Client 114,Healthcare,West
+CUST0115,Client 115,Manufacturing,North
+CUST0116,Client 116,Manufacturing,North
+CUST0117,Client 117,BFSI,South
+CUST0118,Client 118,BFSI,West
+CUST0119,Client 119,Retail,West
+CUST0120,Client 120,BFSI,East

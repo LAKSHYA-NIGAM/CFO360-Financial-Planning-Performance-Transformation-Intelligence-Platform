@@ -1,0 +1,41 @@
+{
+  "summary": {
+    "period": "Trailing 3 months ending Aug 2026",
+    "total_revenue_cr": 255.32,
+    "budget_revenue_cr": 275.56,
+    "revenue_variance_pct": -7.34,
+    "revenue_growth_pct": -4.0,
+    "gross_profit_cr": 126.85,
+    "gross_margin_pct": 49.68,
+    "ebitda_cr": 32.17,
+    "ebitda_margin_pct": 12.6,
+    "total_expense_cr": 223.15,
+    "cost_variance_pct": 1.52,
+    "avg_dso_days": 57.2,
+    "avg_dpo_days": 38.5,
+    "avg_cash_conversion_cycle": 25.9
+  },
+  "insights": [
+    {
+      "metric": "Total Revenue vs Budget",
+      "finding": "Company revenue is -7.3% below budget over the trailing 3 months.",
+      "root_cause_chain": [
+        "Region driver: North region is the largest negative contributor, running -14.5% below its budget.",
+        "Product driver: within North, Product B revenue is down -8.3% versus the prior 3-month period.",
+        "Root cause: average discount on Product B in North has increased by 2.0 percentage points over the same window, consistent with a pricing/competitive response eroding realized revenue."
+      ],
+      "business_impact": "At the current run rate, sustaining this discount level costs approximately \u20b95.6 Cr in foregone revenue over 3 months for Product B in North alone, and is the single largest driver of the company-wide budget miss.",
+      "recommendation": "Freeze further discount escalation on Product B in North; run a win/loss review on recent deals to confirm whether the competitive threat is real or self-inflicted, and reallocate sales incentives toward higher-margin, on-plan products in that region while a pricing review is completed."
+    },
+    {
+      "metric": "Cash Conversion Cycle",
+      "finding": "Company-wide cash conversion cycle has moved from 23 to 25 days, a deterioration of 2 days.",
+      "root_cause_chain": [
+        "Region driver: East shows the sharpest DSO increase, up 4 days versus the prior period.",
+        "Root cause: extended payment terms granted to large enterprise accounts in East are slowing collections faster than payables or inventory are improving."
+      ],
+      "business_impact": "Every additional day of DSO ties up roughly \u20b90.66 Cr of working capital in East alone, directly reducing free cash available for reinvestment.",
+      "recommendation": "Renegotiate payment terms on the top 3-5 overdue accounts in East, introduce early-payment incentives, and set a DSO ceiling as a regional finance KPI going forward."
+    }
+  ]
+}

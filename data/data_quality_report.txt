@@ -1,0 +1,39 @@
+
+--- sales ---
+Rows: 11494, Columns: ['sale_id', 'date', 'region', 'business_unit', 'product', 'customer_id', 'revenue', 'units_sold', 'discount']
+No nulls found.
+No duplicate rows.
+Distinct values in 'region': ['East', 'North', 'South', 'West']
+Distinct values in 'business_unit': ['Cloud Infrastructure', 'Consulting Services', 'Data & Analytics', 'Managed IT Support', 'Software Products']
+Distinct values in 'product': ['Product A', 'Product B', 'Product C', 'Product D']
+
+--- expenses ---
+Rows: 5120, Columns: ['expense_id', 'date', 'region', 'business_unit', 'expense_category', 'amount']
+No nulls found.
+No duplicate rows.
+Distinct values in 'region': ['East', 'North', 'South', 'West']
+Distinct values in 'business_unit': ['Cloud Infrastructure', 'Consulting Services', 'Data & Analytics', 'Managed IT Support', 'Software Products']
+Distinct values in 'expense_category': ['COGS', 'Employee Costs', 'Marketing', 'Operations & Admin', 'Technology & Infra']
+
+--- budget ---
+Rows: 640, Columns: ['budget_id', 'month', 'region', 'business_unit', 'budget_revenue', 'budget_expense']
+No nulls found.
+No duplicate rows.
+Distinct values in 'region': ['East', 'North', 'South', 'West']
+Distinct values in 'business_unit': ['Cloud Infrastructure', 'Consulting Services', 'Data & Analytics', 'Managed IT Support', 'Software Products']
+
+--- working_capital ---
+Rows: 128, Columns: ['date', 'region', 'accounts_receivable', 'accounts_payable', 'inventory']
+No nulls found.
+No duplicate rows.
+Distinct values in 'region': ['East', 'North', 'South', 'West']
+
+--- customers ---
+Rows: 120, Columns: ['customer_id', 'customer_name', 'industry', 'region']
+No nulls found.
+No duplicate rows.
+Distinct values in 'region': ['East', 'North', 'South', 'West']
+Distinct values in 'industry': ['BFSI', 'Healthcare', 'Manufacturing', 'Public Sector', 'Retail', 'Telecom']
+
+--- Referential Integrity ---
+'region' consistent across tables: True
