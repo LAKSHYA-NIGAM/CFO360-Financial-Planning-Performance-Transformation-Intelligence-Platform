@@ -39,6 +39,8 @@ python -m unittest backend/tests/test_api.py
 - **Variance & P&L Waterfall (`test_08`, `test_09`)**: Budget vs actual variance calculations, gross margin, and EBITDA waterfall computations.
 - **Forecasting & Insights (`test_10`, `test_11`)**: Future period revenue forecasts and executive summary narratives.
 - **Error Handling (`test_12`)**: Structured JSON error formatting for 404 Not Found and 405 Method Not Allowed responses.
+- **Financial Health & Ratio Engine (`financial_ratios.py`)**: Computes Current and Quick liquidity ratios, Gross/Operating/EBITDA margins, and Cash Conversion Cycle (CCC = DSO + DIO - DPO) operational efficiency.
+- **Budget Variance Sensitivity Monitor (`variance_monitor.py`)**: Evaluates budget vs actual performance by line item, distinguishes favorable vs adverse variance directions, and flags adverse breaches exceeding 10% sensitivity thresholds.
 
 ---
 
