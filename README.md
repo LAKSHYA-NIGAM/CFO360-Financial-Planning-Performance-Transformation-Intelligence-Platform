@@ -1,5 +1,7 @@
 # CFO360 — Financial Planning, Performance & Transformation Intelligence Platform
 
+[![CI](https://github.com/LAKSHYA-NIGAM/CFO360-Financial-Planning-Performance-Transformation-Intelligence-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/LAKSHYA-NIGAM/CFO360-Financial-Planning-Performance-Transformation-Intelligence-Platform/actions/workflows/ci.yml)
+
 A simulated Deloitte-style engagement for a fictional technology & business
 services company, **NexaTech Industries**. The brief:
 
@@ -20,6 +22,25 @@ CFO360
   │
   └── → Power BI dashboard → Business Insights → Recommendations → React App
 ```
+
+## Automated API Testing & Verification
+
+The backend includes an automated 12-test verification suite testing all analytical endpoints, JSON schema formatting, query filtering, and error handling:
+
+```bash
+# Run backend test suite
+python -m unittest backend/tests/test_api.py
+```
+
+### Test Coverage Highlights:
+- **Health Check (`test_01`)**: Confirms active API service and verification that analytical data files are loaded in memory.
+- **Regions & KPIs (`test_02`, `test_03`)**: Validates geographic regions list and executive metric fields (`total_revenue_cr`, `budget_revenue_cr`, `gross_margin_pct`, `ebitda_margin_pct`).
+- **Revenue Analytics (`test_04` – `test_07`)**: Unfiltered and region-filtered revenue trends, geographic breakdowns, and product category distributions.
+- **Variance & P&L Waterfall (`test_08`, `test_09`)**: Budget vs actual variance calculations, gross margin, and EBITDA waterfall computations.
+- **Forecasting & Insights (`test_10`, `test_11`)**: Future period revenue forecasts and executive summary narratives.
+- **Error Handling (`test_12`)**: Structured JSON error formatting for 404 Not Found and 405 Method Not Allowed responses.
+
+---
 
 ## Why this project exists
 
